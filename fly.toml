@@ -1,0 +1,20 @@
+app = "tg-voice-translator"
+primary_region = "fra"
+
+[build]
+  builder = "paketobuildpacks/builder:base"
+
+[env]
+  PORT = "8080"
+
+[processes]
+web = "python app.py"
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+  processes = ["web"]
+  
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
